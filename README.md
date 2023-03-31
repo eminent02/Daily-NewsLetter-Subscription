@@ -1,11 +1,3 @@
-# Daily-NewsLetter-Subscription
-Project Description
-Table of Contents
-How to Install and Run the Project
-How to Use the Project
-Include Credits
-
-
 # ETL Pipeline for Collecting News Data from Google and Uploading to S3
 # Overview
 This project sets up an ETL (Extract, Transform, Load) pipeline to collect news data from Google and upload it to an S3 bucket. The pipeline is automated using Airflow, and a Lambda function is included to send an email to the user whenever new data is put into the S3 bucket.
