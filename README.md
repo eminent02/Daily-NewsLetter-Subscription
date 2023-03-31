@@ -5,11 +5,19 @@ How to Install and Run the Project
 How to Use the Project
 Include Credits
 
-Project Name
-ETL Pipeline for Collecting News Data from Google and Uploading to S3
-Overview
+
+# ETL Pipeline for Collecting News Data from Google and Uploading to S3
+# Overview
 This project sets up an ETL (Extract, Transform, Load) pipeline to collect news data from Google and upload it to an S3 bucket. The pipeline is automated using Airflow, and a Lambda function is included to send an email to the user whenever new data is put into the S3 bucket.
-Architecture
+## Sections
+- [Architechture](#Architechture)
+- [Prerequisites](#Prerequisites)
+- [Installation](#Installation)
+- [Conclusion](#Conclusion)
+
+
+
+# Architecture
 The architecture of the project consists of the following components:
 Google News API: A source of news data that provides the latest headlines from various sources around the world.
 Airflow: An open-source platform used for scheduling, monitoring, and managing workflows.
@@ -23,11 +31,11 @@ Set up an AWS Lambda function: Create a Lambda function that will send an email 
 Set up an Airflow DAG: Create an Airflow DAG (Directed Acyclic Graph) to schedule the ETL pipeline workflow.
 Run the ETL pipeline: Run the Airflow DAG to start the ETL pipeline, which will collect news data from the Google News API, transform it, and upload it to the S3 bucket.
 Receive email notifications: Whenever new data is added to the S3 bucket, the Lambda function will automatically invoke SES to send an email notification to the user.
-Prerequisites
+# Prerequisites
 Python 3.6 or higher
 AWS account
 Airflow 1.10.12 or higher
-Installation
+# Installation
 Clone this repository to your local machine.
 Install the required Python packages using pip install -r requirements.txt.
 Run app.py to check if news data is successfully uploaded into the s3 bucket.
@@ -52,7 +60,7 @@ Search your dag and run it.
 
 Verify in S3 that you have received the news data.
 Also you must have received an email that delivers the news.
-Conclusion
+# Conclusion
 This project demonstrates how to set up an automated ETL pipeline to collect news data from Google and upload it to an S3 bucket. By using Airflow to schedule the pipeline and AWS Lambda to send email notifications, the workflow can be fully automated and require minimal manual intervention.
 
 
