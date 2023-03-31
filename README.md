@@ -26,16 +26,16 @@ The architecture of the project consists of the following components:
 * AWS Lambda: A serverless computing service that executes code in response to events, in this case, the addition of new data to the S3 bucket.
 * AWS SES: A cloud-based email service used to send email notifications to the user.
 # Setup
-Set up an AWS S3 bucket: Create an S3 bucket to store the news data.
-Set up an AWS IAM role: Create an IAM role with the necessary permissions to access S3 and SES.
-Set up an AWS Lambda function: Create a Lambda function that will send an email using SES whenever new data is put into the S3 bucket.
-Set up an Airflow DAG: Create an Airflow DAG (Directed Acyclic Graph) to schedule the ETL pipeline workflow.
-Run the ETL pipeline: Run the Airflow DAG to start the ETL pipeline, which will collect news data from the Google News API, transform it, and upload it to the S3 bucket.
-Receive email notifications: Whenever new data is added to the S3 bucket, the Lambda function will automatically invoke SES to send an email notification to the user.
+* Set up an AWS S3 bucket: Create an S3 bucket to store the news data.
+* Set up an AWS IAM role: Create an IAM role with the necessary permissions to access S3 and SES.
+* Set up an AWS Lambda function: Create a Lambda function that will send an email using SES whenever new data is put into the S3 bucket.
+* Set up an Airflow DAG: Create an Airflow DAG (Directed Acyclic Graph) to schedule the ETL pipeline workflow.
+* Run the ETL pipeline: Run the Airflow DAG to start the ETL pipeline, which will collect news data from the Google News API, transform it, and upload it to the S3 bucket.
+* Receive email notifications: Whenever new data is added to the S3 bucket, the Lambda function will automatically invoke SES to send an email notification to the user.
 # Prerequisites
-Python 3.6 or higher
-AWS account
-Airflow 1.10.12 or higher
+* Python 3.6 or higher
+* AWS account
+* Airflow 1.10.12 or higher
 # Installation
 Clone this repository to your local machine.
 Install the required Python packages using pip install -r requirements.txt.
