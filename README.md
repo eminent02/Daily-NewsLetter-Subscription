@@ -12,6 +12,7 @@ This project sets up an ETL (Extract, Transform, Load) pipeline to collect news 
 ## Sections
 - [Architechture](#Architechture)
 - [Prerequisites](#Prerequisites)
+- [Setup](#Setup)
 - [Installation](#Installation)
 - [Conclusion](#Conclusion)
 
@@ -19,12 +20,12 @@ This project sets up an ETL (Extract, Transform, Load) pipeline to collect news 
 
 # Architecture
 The architecture of the project consists of the following components:
-Google News API: A source of news data that provides the latest headlines from various sources around the world.
-Airflow: An open-source platform used for scheduling, monitoring, and managing workflows.
-AWS S3: A cloud-based object storage service used to store the news data.
-AWS Lambda: A serverless computing service that executes code in response to events, in this case, the addition of new data to the S3 bucket.
-AWS SES: A cloud-based email service used to send email notifications to the user.
-Setup
+* Google News API: A source of news data that provides the latest headlines from various sources around the world.
+* Airflow: An open-source platform used for scheduling, monitoring, and managing workflows.
+* AWS S3: A cloud-based object storage service used to store the news data.
+* AWS Lambda: A serverless computing service that executes code in response to events, in this case, the addition of new data to the S3 bucket.
+* AWS SES: A cloud-based email service used to send email notifications to the user.
+# Setup
 Set up an AWS S3 bucket: Create an S3 bucket to store the news data.
 Set up an AWS IAM role: Create an IAM role with the necessary permissions to access S3 and SES.
 Set up an AWS Lambda function: Create a Lambda function that will send an email using SES whenever new data is put into the S3 bucket.
