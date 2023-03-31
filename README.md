@@ -9,7 +9,7 @@ This project sets up an ETL (Extract, Transform, Load) pipeline to collect news 
 - [Conclusion](#Conclusion)
 
 # Architecture
-![arch_diagram](./architechture.png)
+![arch_diagram](./acrchtecture.PNG)
 The architecture of the project consists of the following components:
 * Google News API: A source of news data that provides the latest headlines from various sources around the world.
 * Airflow: An open-source platform used for scheduling, monitoring, and managing workflows.
