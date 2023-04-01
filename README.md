@@ -54,8 +54,8 @@ The architecture of the project consists of the following components:
 * Allow https from internet
 * Modify the security groups of the ec2 - inoudn rule - add rule - new TCP rule source - my ip
 * Once ec2 is running . SSH into it 
-  * chmod 400 test-keypair.pem
-  * ssh -i "test-keypair.pem" ubuntu@ec2-34-205-87-187.compute-1.amazonaws.com
+  * chmod 400 xxxxx.pem
+  * ssh -i "xxxx.pem" ubuntu@ec2-xx-xxx-xx-xxx.compute-x.amazonaws.com
   * sudo apt-get update - download package info from internet
   * Install python - sudo apt install python3-pip
   * Install all the dependencies of app.py using pip
