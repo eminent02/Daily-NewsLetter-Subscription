@@ -54,42 +54,34 @@ The architecture of the project consists of the following components:
 * Allow https from internet
 * Modify the security groups of the ec2 - inoudn rule - add rule - new TCP rule source - my ip
 * Once ec2 is running . SSH into it 
-  1) chmod 400 test-keypair.pem
-ssh -i "test-keypair.pem" ubuntu@ec2-34-205-87-187.compute-1.amazonaws.com
-sudo apt-get update - download package info from internet
-Install python - sudo apt install python3-pip
-Install all the dependencies of app.py using pip
-sudo pip install pandas requests boto3 s3fs python-dotenv xmltodict
-Now we are ready to install apache airflow - sudo pip install apache-airflow
-Start the airflow using - airflow standalone
-Once the airlfow server has started. Take a note of the admin cred of airflow
-Now open the Public DNS of the ec2 at port 8080. You should land on the airflow login page
-After logging in You can see the default dags in the home page. Now we need to add our own dag into this
-Open a new bash shell while the server is still up in the prev shell
-Ls -  u will find airflow directory
-Cd airflow - 
-Ls - u will find directories below
-airflow-webserver.pid  airflow.cfg  airflow.db  logs  standalone_admin_password.txt  webserver_config.py
-Mkdir my_dag - create a directory where we can keep our code
-Cd my_dag
-Clone the repo here
-Add .env file containing the aws secrets
-Cd ..
-Sudo nano airflow.cfg - edit 
-dags_folder = /home/ubuntu/airflow/my_dag
-Once done we can restart the airflow server in the other bash shell
-Refresh the airflow page and you should be able to see you dag
-Click on it and open it and run it
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Once airflow dab is running and scheduled we will be getting emails after every interval.
+  * chmod 400 test-keypair.pem
+  * ssh -i "test-keypair.pem" ubuntu@ec2-34-205-87-187.compute-1.amazonaws.com
+  * sudo apt-get update - download package info from internet
+  * Install python - sudo apt install python3-pip
+  * Install all the dependencies of app.py using pip
+  * sudo pip install pandas requests boto3 s3fs python-dotenv xmltodict
+  * Now we are ready to install apache airflow - sudo pip install apache-airflow
+  * Start the airflow using - airflow standalone
+  * Once the airlfow server has started. Take a note of the admin credentials of airflow webserver
+  * Now open the Public DNS of the ec2 at port 8080. You should land on the airflow login page
+  * After logging in You can see the default dags in the home page. Now we need to add our own dag into this
+  * Open a new bash shell while the server is still up in the prev shell
+  * ls -  you will find airflow directory
+  * cd airflow - 
+  * ls - you will find directories below
+  * airflow-webserver.pid  airflow.cfg  airflow.db  logs  standalone_admin_password.txt  webserver_config.py
+  * mkdir my_dag - create a directory where we can keep our code
+  * cd my_dag
+  * Clone the repo here
+  * Add .env file containing the aws secrets
+  * cd ..
+  * sudo nano airflow.cfg - edit the below line to set the working directory that contains the dag file
+  * dags_folder = /home/ubuntu/airflow/**my_dag**
+  * Once done we can restart the airflow server in the other bash shell
+  * Refresh the airflow page and you should be able to see you dag
+  * Click on it and open it and run it
+  * Once airflow dab is running and scheduled we will be getting emails after every interval.
 
-
-
-
-
-
-Verify in S3 that you have received the news data.
-Also you must have received an email that delivers the news.
 # Conclusion
 This project demonstrates how to set up an automated ETL pipeline to collect news data from Google and upload it to an S3 bucket. By using Airflow to schedule the pipeline and AWS Lambda to send email notifications, the workflow can be fully automated and require minimal manual intervention.
 
