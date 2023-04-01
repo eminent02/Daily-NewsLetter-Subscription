@@ -28,26 +28,64 @@ The architecture of the project consists of the following components:
 * AWS account
 * Airflow 1.10.12 or higher
 # Installation
-Clone this repository to your local machine.
-Install the required Python packages using pip install -r requirements.txt.
-Run app.py to check if news data is successfully uploaded into the s3 bucket.
-Create a Lambda Function with a new role that has required access to s3 and ses.
-Add a trigger which will invoke the lambda function whenever  a PUT operation occurs in s3.
-Add a layer to the lambda function that has pandas.
-Add the lambda code from lambda.py .
-Navigate to  Amazon SES and create identity(An identity is the email address that sends or receives an email using this service.)
-Once the identities are created and verified. Get the arn of that identity and edit source and destination email and source arn into the lambda function code block.
-Now run app.py. If everything runs fine, the app.py should upload news data to s3 and this should trigger the lambda function to invoke the ses to send an email.
-Now lets schedule this workflow using Airflow.
-Then create an ec2 instance( preferably Ubuntu  and size: T3.medium).
-SSH into the instance and install python and the required packages.
-Install apache-airflow and start airflow using >> airflow standalone 
-for development server.
-Navigate to airflow folder on the root directory. Create a dag folder and also edit the name of the dag folder in airflow.cfg
-<img>
-Add app.py, dag file and any other required files that is used in app.py
-Login to airflow which is hosted on public dns of the ec2 instance.
-Search your dag and run it.
+
+### Set up an AWS S3 bucket
+* Place it in the same region
+* Uncheck - block all public access option
+* Ensure your iam role has all ec2 and s3 access
+### Set up an AWS SES
+* An identity is an email address that sends/receives the email from SES
+* Once created verify your email address in your email inbox
+### Set up an AWS IAM role (for Lambda Function)
+* Ensure your iam role has all SES and s3 access
+### Set up an AWS Lambda function
+* use a blueprint (get s3 object).
+* Use the new role created above for this lambda function that has access to SES and S3.
+* Choose your s3 bucket for the trigger.
+* Once the lambda function is created, create a layer for Pandas.
+* Deploy the lambda.py code in aws lambda code panel after adding  the source and destination email address and also the source email address identity arn.
+* Run app.py locally. It should uplaod to s3 bucket. This Upload event should trigger lambda function. Then the lambda function should invoke ses to send email to destination address.
+* s3 --> Lambda --> SES
+* To view logs of lambda, you can see it in cloudwatch > log_groups
+* If successful , you must have received an email containing news!!!!!
+## Set up an Airflow DAG
+### Running Airflow on ec2 Instance 
+* Create an ec2 instance (OS Image - Ubuntu) of size at least t3.medium (same region as lambda function and s3)
+* Allow https from internet
+* Modify the security groups of the ec2 - inoudn rule - add rule - new TCP rule source - my ip
+* Once ec2 is running . SSH into it 
+** chmod 400 test-keypair.pem
+ssh -i "test-keypair.pem" ubuntu@ec2-34-205-87-187.compute-1.amazonaws.com
+sudo apt-get update - download package info from internet
+Install python - sudo apt install python3-pip
+Install all the dependencies of app.py using pip
+sudo pip install pandas requests boto3 s3fs python-dotenv xmltodict
+Now we are ready to install apache airflow - sudo pip install apache-airflow
+Start the airflow using - airflow standalone
+Once the airlfow server has started. Take a note of the admin cred of airflow
+Now open the Public DNS of the ec2 at port 8080. You should land on the airflow login page
+After logging in You can see the default dags in the home page. Now we need to add our own dag into this
+Open a new bash shell while the server is still up in the prev shell
+Ls -  u will find airflow directory
+Cd airflow - 
+Ls - u will find directories below
+airflow-webserver.pid  airflow.cfg  airflow.db  logs  standalone_admin_password.txt  webserver_config.py
+Mkdir my_dag - create a directory where we can keep our code
+Cd my_dag
+Clone the repo here
+Add .env file containing the aws secrets
+Cd ..
+Sudo nano airflow.cfg - edit 
+dags_folder = /home/ubuntu/airflow/my_dag
+Once done we can restart the airflow server in the other bash shell
+Refresh the airflow page and you should be able to see you dag
+Click on it and open it and run it
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Once airflow dab is running and scheduled we will be getting emails after every interval.
+
+
+
+
 
 
 Verify in S3 that you have received the news data.
