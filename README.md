@@ -24,9 +24,9 @@ The architecture of the project consists of the following components:
 * Run the ETL pipeline: Run the Airflow DAG to start the ETL pipeline, which will collect news data from the Google News API, transform it, and upload it to the S3 bucket.
 * Receive email notifications: Whenever new data is added to the S3 bucket, the Lambda function will automatically invoke SES to send an email notification to the user.
 # Prerequisites
-* Python 3.6 or higher
-* AWS account
-* Airflow 1.10.12 or higher
+* Basic Understanding of Python 3.6 or higher
+* Basic Understanding of aws services like ec2, s3, ses, lambda. Must have a AWS account
+* Basic Understanding of Airflow 1.10.12 or higher
 # Installation
 
 ### Set up an AWS S3 bucket
